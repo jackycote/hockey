@@ -3,7 +3,7 @@ import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import Brand from '../Brand.vue';
 import Icon from '../editor/Icon.vue';
-import { playerLabel } from './labels';
+import { playerLabel, TEMPLATE_ENGLISH_NAMES } from './labels';
 import TeamRink from './TeamRink.vue';
 import RuleEditor from './RuleEditor.vue';
 import LessonPlayer from './LessonPlayer.vue';
@@ -924,7 +924,7 @@ onBeforeUnmount(() => {
     <header class="platform-header">
       <Brand />
       <nav aria-label="Navigation principale">
-        <RouterLink to="/">Atelier libre</RouterLink
+        <RouterLink to="/">Atelier</RouterLink
         ><RouterLink to="/equipes" aria-current="page"
           >Espace équipe</RouterLink
         >
@@ -1738,6 +1738,9 @@ onBeforeUnmount(() => {
           <div class="platform-project-list">
             <article v-for="c in catalog" :key="c.id" class="platform-card">
               <h2>{{ c.name }}</h2>
+              <p class="demonstration-english-name" lang="en">
+                {{ TEMPLATE_ENGLISH_NAMES[c.template] }}
+              </p>
               <div class="platform-row">
                 <button :disabled="busy" @click="showCatalog(c.id)">
                   Voir la démonstration</button

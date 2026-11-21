@@ -4,7 +4,7 @@ import type { SequenceV12, Scenario, ContextRole } from '@hockey-iq/contracts';
 import { frozenSeek, validateFrozenSequence } from '@hockey-iq/replay';
 import { ROLE_NAMES } from '@hockey-iq/play-systems';
 import DemonstrationPlayer from './DemonstrationPlayer.vue';
-import { playerLabel, PHASE_NAMES } from './labels';
+import { playerLabel, PHASE_NAMES, TEMPLATE_ENGLISH_NAMES } from './labels';
 const props = defineProps<{
   lesson: { name: string; description: string; sequences: SequenceV12[] };
   completed?: boolean;
@@ -72,6 +72,9 @@ watch(index, () => {
 <template>
   <section class="lesson-player" aria-label="Lecteur de leçon">
     <h2>{{ lesson.name }}</h2>
+    <p v-if="!error && sequence" class="demonstration-english-name" lang="en">
+      {{ TEMPLATE_ENGLISH_NAMES[sequence.systemSnapshot.template] }}
+    </p>
     <p>{{ lesson.description }}</p>
     <p v-if="error" role="alert">{{ error }}</p>
     <template v-else>
