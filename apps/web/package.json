@@ -1,0 +1,31 @@
+{
+  "name": "@hockey-iq/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5174 --strictPort",
+    "build": "vue-tsc --noEmit && vite build",
+    "typecheck": "vue-tsc --noEmit",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@hockey-iq/contracts": "workspace:*",
+    "@hockey-iq/play-systems": "workspace:*",
+    "@hockey-iq/replay": "workspace:*",
+    "@hockey-iq/scenario-schema": "workspace:*",
+    "@hockey-iq/simulation-core": "workspace:*",
+    "@hockey-iq/tactical-engine": "workspace:*",
+    "pinia": "4.1.0",
+    "pixi.js": "8.23.0",
+    "vue": "3.5.46",
+    "vue-i18n": "11.4.23",
+    "vue-router": "5.5.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.11",
+    "vite": "8.3.8",
+    "vue-tsc": "3.3.14"
+  }
+}

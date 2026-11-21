@@ -1,0 +1,37 @@
+{
+  "name": "@hockey-iq/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=../../.env src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node --env-file-if-exists=../../.env dist/server.js",
+    "db:migrate": "tsx --env-file-if-exists=../../.env src/platform/cli.ts migrate",
+    "db:seed": "tsx --env-file-if-exists=../../.env src/platform/cli.ts seed",
+    "db:backup": "tsx --env-file-if-exists=../../.env src/platform/cli.ts backup",
+    "db:restore": "tsx --env-file-if-exists=../../.env src/platform/cli.ts restore",
+    "db:prune": "tsx --env-file-if-exists=../../.env src/platform/cli.ts prune"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1173.0",
+    "@electric-sql/pglite": "^0.5.17",
+    "@fastify/swagger": "9.9.5",
+    "@hockey-iq/contracts": "workspace:*",
+    "fastify": "5.12.8",
+    "openid-client": "^6.9.0",
+    "pg": "^8.23.1",
+    "zod": "4.6.7",
+    "@hockey-iq/authz": "workspace:*",
+    "@hockey-iq/entitlements": "workspace:*",
+    "@hockey-iq/play-systems": "workspace:*",
+    "@hockey-iq/scenario-schema": "workspace:*",
+    "@hockey-iq/tactical-engine": "workspace:*",
+    "@hockey-iq/replay": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1",
+    "tsx": "4.23.15"
+  }
+}

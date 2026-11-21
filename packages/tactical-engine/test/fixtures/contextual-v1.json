@@ -1,0 +1,57 @@
+[
+  {
+    "template": "FORECHECK_212",
+    "ticks": 300,
+    "hash": "bb8083f1e51a774fa68564021eaa379c7792996b5f644139f3dcbb922eb89f07",
+    "phase": "FORECHECK",
+    "puck": {
+      "x": 55.316249,
+      "y": 19.080078
+    },
+    "firstTransition": null
+  },
+  {
+    "template": "BOARDS_BREAKOUT",
+    "ticks": 300,
+    "hash": "7377c7ef51788432b9236e03b0578d27fbd7326747436ab6cd6ad1ff1e983686",
+    "phase": "NEUTRAL_ZONE_TRANSITION",
+    "puck": {
+      "x": 41.284588,
+      "y": 6.963643
+    },
+    "firstTransition": 108
+  },
+  {
+    "template": "D_TO_D_REVERSE",
+    "ticks": 300,
+    "hash": "7d09a4ae17434641ee9a776427f04c3f83123b0d58e78db77043bd09f41e542e",
+    "phase": "NEUTRAL_ZONE_TRANSITION",
+    "puck": {
+      "x": 40.792477,
+      "y": 25.06652
+    },
+    "firstTransition": 122
+  },
+  {
+    "template": "LOW_CENTER_SUPPORT",
+    "ticks": 300,
+    "hash": "d4dc62e968ecf0aee0762b0c9ce5b902ad5fcb7add9324dbb5853d6c282ad12f",
+    "phase": "NEUTRAL_ZONE_TRANSITION",
+    "puck": {
+      "x": 39.116354,
+      "y": 1.072523
+    },
+    "firstTransition": 142
+  },
+  {
+    "template": "UNDER_PRESSURE_BREAKOUT",
+    "ticks": 300,
+    "hash": "7d09a4ae17434641ee9a776427f04c3f83123b0d58e78db77043bd09f41e542e",
+    "phase": "NEUTRAL_ZONE_TRANSITION",
+    "puck": {
+      "x": 40.792477,
+      "y": 25.06652
+    },
+    "firstTransition": 122
+  }
+]

@@ -1,0 +1,127 @@
+$ pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ eslint .
+$ pnpm --filter "./packages/**" -r build && pnpm -r typecheck && tsc -p tsconfig.tools.json
+packages/contracts build$ tsc -p tsconfig.json
+packages/contracts build: Done
+packages/authz build$ tsc -p tsconfig.json
+packages/coaching build$ tsc -p tsconfig.json
+packages/entitlements build$ tsc -p tsconfig.json
+packages/scenario-schema build$ tsc -p tsconfig.json
+packages/entitlements build: Done
+packages/simulation-core build$ tsc -p tsconfig.json
+packages/coaching build: Done
+packages/tactics build$ tsc -p tsconfig.json
+packages/authz build: Done
+packages/scenario-schema build: Done
+packages/play-systems build$ tsc -p tsconfig.json
+packages/tactics build: Done
+packages/simulation-core build: Done
+packages/play-systems build: Done
+packages/tactical-engine build$ tsc -p tsconfig.json
+packages/tactical-engine build: Done
+packages/replay build$ tsc -p tsconfig.json
+packages/replay build: Done
+packages/contracts typecheck$ tsc -p tsconfig.json --noEmit
+packages/contracts typecheck: Done
+packages/authz typecheck$ tsc -p tsconfig.json --noEmit
+packages/coaching typecheck$ tsc -p tsconfig.json --noEmit
+packages/entitlements typecheck$ tsc -p tsconfig.json --noEmit
+packages/scenario-schema typecheck$ tsc -p tsconfig.json --noEmit
+packages/entitlements typecheck: Done
+packages/simulation-core typecheck$ tsc -p tsconfig.json --noEmit
+packages/coaching typecheck: Done
+packages/tactics typecheck$ tsc -p tsconfig.json --noEmit
+packages/authz typecheck: Done
+packages/scenario-schema typecheck: Done
+packages/play-systems typecheck$ tsc -p tsconfig.json --noEmit
+packages/tactics typecheck: Done
+packages/simulation-core typecheck: Done
+packages/play-systems typecheck: Done
+packages/tactical-engine typecheck$ tsc -p tsconfig.json --noEmit
+packages/tactical-engine typecheck: Done
+packages/replay typecheck$ tsc -p tsconfig.json --noEmit
+packages/replay typecheck: Done
+apps/api typecheck$ tsc -p tsconfig.json --noEmit
+apps/web typecheck$ vue-tsc --noEmit
+apps/api typecheck: Done
+apps/web typecheck: Done
+$ vitest run
+
+ RUN  v5.1.1 /Users/jackycote/vscode/hockey
+
+{"level":30,"time":1795288136427,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-1","method":"GET","route":"/api/v1/auth/start","status":302,"durationMs":69.26328999999987,"msg":"request"}
+{"level":30,"time":1795288136447,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-2","method":"GET","route":"/api/v1/auth/callback","status":401,"durationMs":15.835463999999774,"msg":"request"}
+{"level":30,"time":1795288136452,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-3","method":"GET","route":"/api/v1/auth/start","status":302,"durationMs":4.996650999999474,"msg":"request"}
+{"level":30,"time":1795288136459,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-4","method":"GET","route":"/api/v1/auth/callback","status":401,"durationMs":5.663558000000194,"msg":"request"}
+{"level":30,"time":1795288136464,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-5","method":"GET","route":"/api/v1/auth/start","status":302,"durationMs":4.3370960000002015,"msg":"request"}
+{"level":30,"time":1795288136471,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-6","method":"GET","route":"/api/v1/auth/callback","status":401,"durationMs":5.700542999999925,"msg":"request"}
+{"level":30,"time":1795288136480,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-7","method":"GET","route":"/api/v1/auth/start","status":302,"durationMs":8.628791000000092,"msg":"request"}
+{"level":30,"time":1795288136487,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-8","method":"GET","route":"/api/v1/auth/callback","status":401,"durationMs":6.1368090000005395,"msg":"request"}
+{"level":30,"time":1795288136490,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-9","method":"GET","route":"/api/v1/auth/start","status":302,"durationMs":2.6465950000001612,"msg":"request"}
+{"level":30,"time":1795288136498,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-a","method":"GET","route":"/api/v1/auth/callback","status":401,"durationMs":7.91952399999991,"msg":"request"}
+{"level":30,"time":1795288136501,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-b","method":"GET","route":"/api/v1/auth/start","status":302,"durationMs":1.6959520000000339,"msg":"request"}
+{"level":30,"time":1795288136501,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-c","method":"GET","route":"/api/v1/auth/callback","status":400,"durationMs":0.303302000000258,"msg":"request"}
+{"level":30,"time":1795288136513,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-d","method":"GET","route":"/api/v1/auth/callback","status":302,"durationMs":11.073408999999629,"msg":"request"}
+{"level":30,"time":1795288136516,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-e","method":"GET","route":"/api/v1/auth/callback","status":400,"durationMs":2.346027999999933,"msg":"request"}
+{"level":30,"time":1795288136521,"pid":86320,"hostname":"Jackys-MacBook-Pro.local","requestId":"req-f","method":"POST","route":"/api/v1/auth/dev","status":404,"durationMs":3.0579139999999825,"msg":"request"}
+
+ Test Files  18 passed (18)
+      Tests  197 passed (197)
+   Start at  14:08:49
+   Duration  13.63s (tests 88%, import 10%, transform 1%)
+
+$ pnpm -r build
+packages/contracts build$ tsc -p tsconfig.json
+packages/contracts build: Done
+packages/authz build$ tsc -p tsconfig.json
+packages/coaching build$ tsc -p tsconfig.json
+packages/entitlements build$ tsc -p tsconfig.json
+packages/scenario-schema build$ tsc -p tsconfig.json
+packages/entitlements build: Done
+packages/simulation-core build$ tsc -p tsconfig.json
+packages/coaching build: Done
+packages/tactics build$ tsc -p tsconfig.json
+packages/authz build: Done
+packages/scenario-schema build: Done
+packages/play-systems build$ tsc -p tsconfig.json
+packages/tactics build: Done
+packages/simulation-core build: Done
+packages/play-systems build: Done
+packages/tactical-engine build$ tsc -p tsconfig.json
+packages/tactical-engine build: Done
+packages/replay build$ tsc -p tsconfig.json
+packages/replay build: Done
+apps/api build$ tsc -p tsconfig.json
+apps/web build$ vue-tsc --noEmit && vite build
+apps/api build: Done
+apps/web build: vite v8.3.8 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 958 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                                     0.46 kB │ gzip:   0.30 kB
+apps/web build: dist/assets/simulation.worker-CGd7vdII.js         143.77 kB
+apps/web build: dist/assets/tactics.worker-CT4kXibi.js            163.63 kB
+apps/web build: dist/assets/index-Byl4NZy2.css                      3.98 kB │ gzip:   1.50 kB
+apps/web build: dist/assets/WorkspaceView-Azga4Djv.css             11.33 kB │ gzip:   2.84 kB
+apps/web build: dist/assets/EditorView-DLrriBFk.css                29.47 kB │ gzip:   6.34 kB
+apps/web build: dist/assets/webworkerAll-B2Hy6kmi.js                0.05 kB │ gzip:   0.06 kB
+apps/web build: dist/assets/getTextureBatchBindGroup-SQpf-Y9t.js    0.34 kB │ gzip:   0.26 kB
+apps/web build: dist/assets/rolldown-runtime-XKyaHtl9.js            0.72 kB │ gzip:   0.42 kB
+apps/web build: dist/assets/scenario-DR3rye78.js                    4.77 kB │ gzip:   2.46 kB
+apps/web build: dist/assets/canvasUtils-PizEy2MV.js                 6.19 kB │ gzip:   2.09 kB
+apps/web build: dist/assets/getTexelRangeRects-B2axXWAT.js         11.40 kB │ gzip:   3.00 kB
+apps/web build: dist/assets/init-DcWEwS13.js                       15.38 kB │ gzip:   4.75 kB
+apps/web build: dist/assets/browserAll-BQT92xwJ.js                 43.55 kB │ gzip:  11.32 kB
+apps/web build: dist/assets/EditorView-DoqjZ-Za.js                 74.77 kB │ gzip:  22.21 kB
+apps/web build: dist/assets/RenderTargetSystem-B2GdVgi6.js         79.12 kB │ gzip:  22.42 kB
+apps/web build: dist/assets/WorkspaceView-ByMJ3kkK.js              91.67 kB │ gzip:  28.85 kB
+apps/web build: dist/assets/CanvasPool-YMkPr1ZO.js                116.49 kB │ gzip:  35.44 kB
+apps/web build: dist/assets/renderer-DtWkXJGw.js                  295.30 kB │ gzip:  87.63 kB
+apps/web build: dist/assets/index-BEYsmznl.js                     303.14 kB │ gzip: 102.02 kB
+apps/web build: 
+apps/web build: ✓ built in 887ms
+apps/web build: Done

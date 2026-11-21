@@ -1,0 +1,302 @@
+<div id="hockey-sequence-proposal">
+  <style>
+    #hockey-sequence-proposal {
+      display: grid;
+      gap: calc(var(--font-size-base) * 0.8);
+      color: var(--foreground);
+    }
+    #hockey-sequence-proposal .rink {
+      width: 100%;
+      display: block;
+    }
+    #hockey-sequence-proposal .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: calc(var(--font-size-base) * 1.2);
+      align-items: center;
+    }
+    #hockey-sequence-proposal .legend span {
+      display: inline-flex;
+      gap: calc(var(--font-size-base) * 0.4);
+      align-items: center;
+    }
+    #hockey-sequence-proposal .travel-key {
+      color: var(--viz-series-1);
+    }
+    #hockey-sequence-proposal .look-key {
+      color: var(--viz-series-3);
+    }
+    #hockey-sequence-proposal .timeline {
+      display: grid;
+      gap: calc(var(--font-size-base) * 0.5);
+    }
+    #hockey-sequence-proposal .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: calc(var(--font-size-base) * 0.5);
+    }
+    #hockey-sequence-proposal .selected-detail {
+      min-height: 1.5em;
+    }
+    #hockey-sequence-proposal .stamp {
+      margin-left: auto;
+    }
+    #hockey-sequence-proposal svg text {
+      fill: var(--foreground);
+      font: inherit;
+      font-weight: 500;
+    }
+  </style>
+  <div class="legend text-small">
+    <span
+      ><span class="travel-key" aria-hidden="true">&gt;</span> Direction du
+      déplacement</span
+    >
+    <span
+      ><i data-lucide="eye" class="look-key" aria-hidden="true"></i> Regard vers
+      B1</span
+    >
+  </div>
+  <svg
+    class="rink"
+    role="img"
+    aria-label="A1 se déplace vers la droite tout en regardant B1 derrière lui. A2 est un coéquipier disponible."
+  ></svg>
+  <div class="viz-controls">
+    <span class="text-small">En pause</span>
+    <button type="button" class="btn insert">Insérer ici</button>
+    <label class="form-label"
+      >Type d’étape<select class="form-select kind">
+        <option value="observation">Observation</option>
+        <option value="movement">Déplacement</option>
+      </select></label
+    >
+    <span class="stamp text-small tabular-nums">1,2 s</span>
+  </div>
+  <div class="timeline">
+    <label class="form-label"
+      >Position dans la séquence<input
+        class="form-range scrub"
+        type="range"
+        min="0"
+        max="4"
+        step="0.01"
+        value="1.2"
+    /></label>
+    <div class="steps" aria-label="Étapes enregistrées"></div>
+  </div>
+  <p class="selected-detail text-small" role="status" aria-live="polite">
+    A1 · Observer B1 pendant le déplacement.
+  </p>
+  <script>
+    (() => {
+      const root = document.getElementById('hockey-sequence-proposal');
+      const svg = root.querySelector('.rink'),
+        insert = root.querySelector('.insert'),
+        scrub = root.querySelector('.scrub'),
+        kind = root.querySelector('.kind'),
+        stamps = root.querySelector('.stamp'),
+        chips = root.querySelector('.steps'),
+        detail = root.querySelector('.selected-detail');
+      const defaults = [
+        { id: 'start', at: 0, x: 0.18, y: 0.69, kind: 'movement' },
+        { id: 'scan', at: 2, x: 0.48, y: 0.64, kind: 'observation' },
+        { id: 'exit', at: 4, x: 0.8, y: 0.53, kind: 'movement' },
+      ];
+      let steps = defaults.map((step) => ({ ...step })),
+        time = 1.2,
+        playing = false,
+        serial = 0,
+        width = 736,
+        height = 300,
+        ownSnapshots = new Set();
+      const stateKey = (value) =>
+        JSON.stringify([
+          value.time,
+          value.kind,
+          value.steps.map((step) => [
+            step.id,
+            step.at,
+            step.x,
+            step.y,
+            step.kind,
+          ]),
+        ]);
+      function save() {
+        ownSnapshots.add(stateKey({ steps, time, kind: kind.value }));
+        if (ownSnapshots.size > 32)
+          ownSnapshots.delete(ownSnapshots.values().next().value);
+        if (window.openai && window.openai.setWidgetState)
+          window.openai
+            .setWidgetState({
+              modelContent: {
+                proposal: 'saved-game-steps',
+                steps: steps.map((s) => ({ at: s.at, type: s.kind })),
+                selectedTime: Math.round(time * 100) / 100,
+              },
+              privateContent: {
+                steps: steps.map((step) => ({ ...step })),
+                time,
+                kind: kind.value,
+              },
+            })
+            .catch(() => {});
+      }
+      function restore(state) {
+        const value = state && state.privateContent;
+        if (
+          value &&
+          Array.isArray(value.steps) &&
+          ownSnapshots.has(stateKey(value))
+        )
+          return;
+        if (
+          !value ||
+          !Array.isArray(value.steps) ||
+          value.steps.length < 2 ||
+          value.steps.length > 15
+        )
+          return;
+        if (
+          !value.steps.every(
+            (s) =>
+              Number.isFinite(s.at) &&
+              s.at >= 0 &&
+              s.at <= 4 &&
+              Number.isFinite(s.x) &&
+              Number.isFinite(s.y) &&
+              ['movement', 'observation'].includes(s.kind),
+          )
+        )
+          return;
+        steps = value.steps.map((s) => ({ ...s })).sort((a, b) => a.at - b.at);
+        time = Number.isFinite(value.time)
+          ? Math.max(0, Math.min(4, value.time))
+          : 1.2;
+        kind.value = value.kind === 'movement' ? 'movement' : 'observation';
+        playing = false;
+        render();
+      }
+      function sample(t) {
+        let index = steps.findIndex(
+          (step, i) => i < steps.length - 1 && t < steps[i + 1].at,
+        );
+        if (index < 0) index = steps.length - 2;
+        const a = steps[index],
+          b = steps[index + 1],
+          p = Math.max(0, Math.min(1, (t - a.at) / (b.at - a.at)));
+        return {
+          x: a.x + (b.x - a.x) * p,
+          y: a.y + (b.y - a.y) * p,
+          dx: b.x - a.x,
+          dy: b.y - a.y,
+        };
+      }
+      function point(x, y) {
+        return { x: 24 + x * (width - 48), y: 20 + y * (height - 40) };
+      }
+      function actor(pos, label, color, selected) {
+        return `<circle cx="${pos.x}" cy="${pos.y}" r="${selected ? 19 : 16}" fill="color-mix(in srgb,${color} 16%,var(--background))" stroke="${color}" stroke-width="${selected ? 2 : 1.5}"/><text x="${pos.x}" y="${pos.y + 5}" text-anchor="middle">${label}</text>`;
+      }
+      function render() {
+        height = width < 450 ? 230 : 300;
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        svg.setAttribute('height', String(height));
+        const state = sample(time),
+          a = point(state.x, state.y),
+          target = point(0.22, 0.22),
+          teammate = point(0.78, 0.23),
+          end = point(0.8, 0.53);
+        const gaze = Math.atan2(target.y - a.y, target.x - a.x),
+          angle = (Math.atan2(state.dy, state.dx) * 180) / Math.PI,
+          reach = Math.hypot(target.x - a.x, target.y - a.y);
+        const left = {
+            x: a.x + Math.cos(gaze - 0.19) * reach,
+            y: a.y + Math.sin(gaze - 0.19) * reach,
+          },
+          right = {
+            x: a.x + Math.cos(gaze + 0.19) * reach,
+            y: a.y + Math.sin(gaze + 0.19) * reach,
+          };
+        const border = 'var(--border)',
+          motion = 'var(--viz-series-1)',
+          look = 'var(--viz-series-3)',
+          opponent = 'var(--viz-series-2)';
+        svg.innerHTML = `<rect x="12" y="10" width="${width - 24}" height="${height - 20}" rx="${Math.min(66, (height - 20) / 3)}" fill="var(--background)" stroke="${border}" stroke-width="1.5"/>
+          <line x1="${width * 0.5}" y1="11" x2="${width * 0.5}" y2="${height - 11}" stroke="${border}"/>
+          <circle cx="${width * 0.5}" cy="${height * 0.5}" r="${height * 0.16}" fill="none" stroke="${border}"/>
+          <line x1="${a.x}" y1="${a.y}" x2="${end.x}" y2="${end.y}" stroke="${motion}" opacity=".35" stroke-width="1.5"/>
+          <path d="M${a.x} ${a.y}L${left.x} ${left.y}L${right.x} ${right.y}Z" fill="color-mix(in srgb,${look} 10%,transparent)"/>
+          <line x1="${a.x}" y1="${a.y}" x2="${target.x}" y2="${target.y}" stroke="${look}" stroke-width="1.7" stroke-dasharray="5 5"/>
+          <circle cx="${target.x}" cy="${target.y}" r="25" fill="none" stroke="${look}" stroke-width="1.5" stroke-dasharray="3 4"/>
+          ${actor(target, 'B1', opponent, false)}${actor(teammate, 'A2', motion, false)}${actor(a, 'A1', motion, true)}
+          <g transform="translate(${a.x} ${a.y}) rotate(${angle})"><polyline points="24,-5 31,0 24,5" fill="none" stroke="${motion}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <circle cx="${a.x + 12}" cy="${a.y + 19}" r="4" fill="var(--foreground)"/>`;
+        insert.disabled =
+          playing ||
+          steps.some((step) => Math.abs(step.at - time) < 0.04) ||
+          steps.length >= 15;
+        scrub.value = String(time);
+        stamps.textContent = `${time.toFixed(1).replace('.', ',')} s`;
+        chips.replaceChildren();
+        steps.forEach((step, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'btn btn-ghost';
+          button.textContent = `${index + 1} · ${step.kind === 'observation' ? 'Observation' : 'Déplacement'}`;
+          button.setAttribute(
+            'aria-pressed',
+            String(Math.abs(step.at - time) < 0.04),
+          );
+          button.addEventListener('click', () => {
+            playing = false;
+            time = step.at;
+            render();
+            detail.textContent =
+              step.kind === 'observation'
+                ? 'A1 · Observer B1 avant de continuer.'
+                : `Étape ${index + 1} · Positions enregistrées.`;
+            save();
+          });
+          chips.append(button);
+        });
+      }
+      scrub.addEventListener('input', () => {
+        playing = false;
+        time = Number(scrub.value);
+        render();
+        detail.textContent = 'A1 · Observer B1 pendant le déplacement.';
+      });
+      scrub.addEventListener('change', save);
+      kind.addEventListener('change', save);
+      insert.addEventListener('click', () => {
+        const position = sample(time);
+        steps.push({
+          id: `inserted-${++serial}`,
+          at: time,
+          x: position.x,
+          y: position.y,
+          kind: kind.value,
+        });
+        steps.sort((a, b) => a.at - b.at);
+        render();
+        detail.textContent = `Étape ${kind.value === 'observation' ? 'd’observation' : 'de déplacement'} insérée · Positions conservées.`;
+        save();
+      });
+      new ResizeObserver((entries) => {
+        width = Math.max(280, Math.round(entries[0].contentRect.width));
+        render();
+      }).observe(root);
+      render();
+      restore(window.openai && window.openai.widgetState);
+      window.addEventListener('openai:set_globals', (event) => {
+        if (
+          event.detail &&
+          event.detail.globals &&
+          event.detail.globals.widgetState
+        )
+          restore(event.detail.globals.widgetState);
+      });
+    })();
+  </script>
+</div>

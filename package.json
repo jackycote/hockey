@@ -1,0 +1,52 @@
+{
+  "name": "hockey-iq-simulator",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.21.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "pnpm --filter \"./packages/**\" -r build && concurrently -k -n api,web \"pnpm --filter @hockey-iq/api dev\" \"pnpm --filter @hockey-iq/web dev\"",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm --filter \"./packages/**\" -r build && pnpm -r typecheck && tsc -p tsconfig.tools.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "pnpm --filter \"./packages/**\" -r build && pnpm --filter @hockey-iq/web build && playwright test",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "services:up": "docker compose --env-file .env up -d --wait",
+    "services:down": "docker compose --env-file .env down",
+    "setup:env": "node scripts/setup-env.mjs",
+    "demo": "ENABLE_DEMO_AUTH=true API_DB_MODE=embedded pnpm dev",
+    "db:migrate": "pnpm --filter @hockey-iq/api db:migrate",
+    "db:seed": "pnpm --filter @hockey-iq/api db:seed",
+    "db:backup": "pnpm --filter @hockey-iq/api db:backup",
+    "db:restore": "pnpm --filter @hockey-iq/api db:restore",
+    "test:services": "node --env-file-if-exists=.env scripts/check-services.mjs",
+    "bench:tactics": "pnpm --filter \"./packages/**\" -r build && node scripts/benchmark-tactics.mjs",
+    "db:prune": "pnpm --filter @hockey-iq/api db:prune"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "10.0.1",
+    "@hockey-iq/contracts": "workspace:*",
+    "@hockey-iq/simulation-core": "workspace:*",
+    "@playwright/test": "1.65.1",
+    "@types/node": "^24.0.0",
+    "concurrently": "10.0.7",
+    "eslint": "10.15.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "10.12.1",
+    "globals": "^16.0.0",
+    "prettier": "3.10.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.73.0",
+    "vite": "8.3.8",
+    "vitest": "5.1.1",
+    "vue-eslint-parser": "^10.0.0"
+  }
+}

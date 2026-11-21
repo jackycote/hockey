@@ -1,0 +1,38 @@
+[WebServer] ../../.env not found. Continuing without it.
+[WebServer] (node:85654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85665) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85667) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85691) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 2 workers
+
+(node:85693) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85694) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › e2e/demonstration-steps.spec.ts:161:1 › BKL-037 assigned lesson shares the teaching timeline, accurate step stops, speed and reset controls (2.6s)
+(node:85704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [desktop] › e2e/platform-a11y.spec.ts:17:1 › team workspace and typed system editor have accessible names, structure and contrast (2.6s)
+  ✓  2 [desktop] › e2e/demonstration-steps.spec.ts:39:1 › BKL-037 catalogue timeline animates to each teaching step and preserves continuous playback and source data (7.2s)
+(node:85714) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [desktop] › e2e/platform-a11y.spec.ts:35:1 › assigned private player reader has accessible controls and no horizontal overflow (1.9s)
+(node:85720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  6 [desktop] › e2e/platform-v12.spec.ts:223:1 › v1.2 team switching, Free quota and catalogue assignment preserve tenant boundaries (3.2s)
+(node:85725) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [desktop] › e2e/platform-v12.spec.ts:28:1 › v1.2 coach creates a project, edits a scenario, records an intervention, publishes and assigns; player reads privately on mobile (5.0s)
+(node:85729) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [desktop] › e2e/tactical-worker.spec.ts:6:1 › tactical Worker matches Node hashes and runs its fixed timer (934ms)
+  ✓  8 [desktop] › e2e/tactical-worker.spec.ts:51:1 › bounded demonstration preparation produces the same immutable track as Node (583ms)
+
+  8 passed (22.7s)

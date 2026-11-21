@@ -1,0 +1,260 @@
+.demonstration-player {
+  min-width: 0;
+  width: 100%;
+}
+.team-rink-stage {
+  min-width: 0;
+}
+.team-rink-stage--narrated {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  align-items: stretch;
+  background: var(--soft);
+}
+.team-rink-description {
+  min-width: 0;
+  padding: 18px 12px;
+  align-self: start;
+}
+.demonstration-bubble {
+  position: relative;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 20px #102b4e0b;
+  overflow-wrap: anywhere;
+}
+.demonstration-bubble::after {
+  content: '';
+  position: absolute;
+  right: -7px;
+  top: 32px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.platform-app .demonstration-bubble h3 {
+  font-size: 17px;
+  line-height: 1.35;
+  margin: 8px 0;
+}
+.platform-app .demonstration-bubble p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+.platform-app .demonstration-bubble .demonstration-bubble-counter {
+  font-weight: 750;
+  color: var(--blue-strong);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.demonstration-editor {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  margin-top: 8px;
+  overflow: hidden;
+  min-width: 0;
+}
+.platform-app .demonstration-transport {
+  padding: 8px 12px;
+  gap: 8px;
+}
+.demonstration-transport button {
+  flex: none;
+}
+.platform-app .demonstration-transport button[aria-pressed='true'] {
+  background: var(--blue-strong);
+  color: white;
+}
+.platform-app .demonstration-time {
+  min-width: 122px;
+  white-space: nowrap;
+}
+.platform-app .demonstration-speed {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 0 auto;
+}
+.demonstration-mode {
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 90px;
+}
+.demonstration-scrub {
+  padding: 0 14px;
+}
+.platform-app .demonstration-scrub input {
+  width: 100%;
+  min-height: 24px;
+  margin: 0;
+}
+.demonstration-timeline {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  min-width: 0;
+  padding: 4px 0 10px;
+  scrollbar-width: thin;
+}
+.demonstration-track {
+  position: relative;
+  min-width: calc(var(--steps) * 132px);
+}
+.demonstration-track ol {
+  display: grid;
+  grid-template-columns: repeat(var(--steps), minmax(132px, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.demonstration-track li {
+  min-width: 0;
+  padding: 0 4px;
+}
+.demonstration-axis {
+  position: absolute;
+  top: 17px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--line);
+}
+.demonstration-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #c54036;
+  pointer-events: none;
+  z-index: 2;
+}
+.demonstration-playhead::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #c54036;
+}
+.platform-app .demonstration-track button {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px 8px;
+  background: transparent;
+  border-color: transparent;
+  justify-content: flex-start;
+  border-radius: 8px;
+}
+.platform-app .demonstration-track button[aria-current='step'] {
+  background: var(--ice);
+  border-color: var(--line);
+}
+.platform-app .demonstration-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  font-weight: 750;
+  font-size: 12px;
+  z-index: 3;
+}
+.demonstration-track button[aria-current='step'] .demonstration-marker {
+  border-color: var(--blue-strong);
+  background: var(--blue-strong);
+  color: white;
+}
+.demonstration-track time {
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.demonstration-step-title {
+  font-size: 12px;
+  line-height: 1.3;
+  white-space: normal;
+  text-align: center;
+}
+@media (max-width: 760px) {
+  .team-rink-stage--narrated {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .team-rink-description {
+    padding: 10px;
+  }
+  .demonstration-bubble {
+    padding: 12px;
+  }
+  .demonstration-bubble::after {
+    top: auto;
+    bottom: -7px;
+    right: 28px;
+    transform: rotate(135deg);
+  }
+  .platform-app .demonstration-bubble p {
+    font-size: 12px;
+  }
+  .platform-app .demonstration-bubble h3 {
+    font-size: 15px;
+    margin: 4px 0;
+  }
+  .platform-app .demonstration-transport {
+    gap: 6px;
+  }
+  .platform-app .demonstration-speed {
+    margin-left: 0;
+  }
+  .demonstration-mode {
+    display: none;
+  }
+  .platform-app .demonstration-time {
+    font-size: 11px;
+    min-width: 100px;
+  }
+}
+
+.demonstration-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.demonstration-preparation {
+  min-height: 180px;
+  padding: 24px;
+}
+
+.demonstration-bubble-description {
+  max-height: clamp(120px, 18vw, 240px);
+  overflow-y: auto;
+}
+.demonstration-bubble-description:focus-visible {
+  outline: 2px solid var(--blue-strong);
+  outline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .demonstration-bubble-description {
+    max-height: 140px;
+  }
+}

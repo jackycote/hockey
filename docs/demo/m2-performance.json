@@ -1,0 +1,10 @@
+{
+  "runtime": "v24.16.0",
+  "platform": "darwin",
+  "architecture": "x64",
+  "ticks": 2000,
+  "totalMs": 431.12,
+  "averageMsPerTick": 0.216,
+  "p95MsPerTick": 0.35,
+  "scope": "Headless Node on this development machine; no device/mobile performance guarantee."
+}

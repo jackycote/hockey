@@ -1,0 +1,257 @@
+{
+  "engineVersion": "0.1.0",
+  "scenario": {
+    "schemaVersion": 1,
+    "id": "golden-m2",
+    "title": "Déplacements et passe — référence M2",
+    "seed": 42,
+    "rink": {
+      "length": 60.96,
+      "width": 25.9
+    },
+    "initialPhase": "neutral",
+    "teams": [
+      {
+        "id": "a",
+        "label": "Équipe A",
+        "attackDirection": "positive_x"
+      },
+      {
+        "id": "b",
+        "label": "Équipe B",
+        "attackDirection": "negative_x"
+      }
+    ],
+    "players": [
+      {
+        "id": "a-0",
+        "teamId": "a",
+        "label": "1",
+        "nominalPosition": "LW",
+        "pos": {
+          "x": 20,
+          "y": 4
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": {
+          "kind": "support",
+          "targetPoint": {
+            "x": 33,
+            "y": 6
+          }
+        }
+      },
+      {
+        "id": "a-1",
+        "teamId": "a",
+        "label": "2",
+        "nominalPosition": "C",
+        "pos": {
+          "x": 20,
+          "y": 8
+        },
+        "vel": {
+          "x": 2,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "a-2",
+        "teamId": "a",
+        "label": "3",
+        "nominalPosition": "RW",
+        "pos": {
+          "x": 20,
+          "y": 12
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "a-3",
+        "teamId": "a",
+        "label": "4",
+        "nominalPosition": "LD",
+        "pos": {
+          "x": 20,
+          "y": 16
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "a-4",
+        "teamId": "a",
+        "label": "5",
+        "nominalPosition": "RD",
+        "pos": {
+          "x": 20,
+          "y": 20
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "b-0",
+        "teamId": "b",
+        "label": "1",
+        "nominalPosition": "LW",
+        "pos": {
+          "x": 40,
+          "y": 4
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "b-1",
+        "teamId": "b",
+        "label": "2",
+        "nominalPosition": "C",
+        "pos": {
+          "x": 40,
+          "y": 8
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "b-2",
+        "teamId": "b",
+        "label": "3",
+        "nominalPosition": "RW",
+        "pos": {
+          "x": 40,
+          "y": 12
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "b-3",
+        "teamId": "b",
+        "label": "4",
+        "nominalPosition": "LD",
+        "pos": {
+          "x": 40,
+          "y": 16
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      },
+      {
+        "id": "b-4",
+        "teamId": "b",
+        "label": "5",
+        "nominalPosition": "RD",
+        "pos": {
+          "x": 40,
+          "y": 20
+        },
+        "vel": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "role": null,
+        "objective": null
+      }
+    ],
+    "puck": {
+      "pos": {
+        "x": 20,
+        "y": 4
+      },
+      "vel": {
+        "x": 0,
+        "y": 0
+      },
+      "holderId": "a-0"
+    },
+    "tacticsByTeam": {
+      "a": {
+        "system": "forecheck_212",
+        "roleHoldTicks": 15,
+        "switchPenalty": 1,
+        "coverageWeight": 1,
+        "pressureWeight": 1,
+        "defensiveGapMetres": 6,
+        "offensiveRisk": 0.25
+      },
+      "b": {
+        "system": "forecheck_212",
+        "roleHoldTicks": 15,
+        "switchPenalty": 1,
+        "coverageWeight": 1,
+        "pressureWeight": 1,
+        "defensiveGapMetres": 6,
+        "offensiveRisk": 0.25
+      }
+    }
+  },
+  "inputs": [
+    {
+      "schemaVersion": 1,
+      "tick": 15,
+      "sequence": 0,
+      "kind": "pass_requested",
+      "fromPlayerId": "a-0",
+      "targetPoint": {
+        "x": 20,
+        "y": 20
+      }
+    }
+  ],
+  "hashes": {
+    "0": "47e98218923854aafe848b46581cf6f61c3cee9ad4fce971fd9ec330db567ccb",
+    "1": "1fcfd406d1341c586e7a50b4824f16fb487ed1648e0ee34c8c9b412e91bf3e3a",
+    "15": "a1c97953739dadefb8f75d3f0947d58329b10998104820203824c9de3648203e",
+    "30": "2a899b3a59515869dc74e11f0f85129ae80496e69e9646f35c215092f0a9d25c",
+    "60": "14aae6f71f48ba16c631cff9e0a1227334547bc914d3fbad69afb230f822e4a4",
+    "120": "7acb404743c3de6c71b1bc2bfcff27420ccfbb066c8b4de1df7273bc1cd809f5",
+    "300": "8a0386f4530b428a83704eb11931670dd272a024e45eb51b1ae5cf4eef31e801"
+  }
+}
