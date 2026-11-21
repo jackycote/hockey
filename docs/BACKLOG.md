@@ -55,6 +55,7 @@ La création et la tenue du backlog, l’enregistrement des décisions et les in
 | BKL-037 | Démonstrations : timeline des étapes, lecture animée pas à pas et bulle descriptive        | Implémenté | 2026-11-21 — « implement 037 »             |
 | BKL-039 | Menu d'accueil Atelier : créer, charger une séquence et charger une tactique               | En cours   | 2026-11-21 — « I approve 039 »             |
 | BKL-038 | Afficher le nom anglais d’origine de chaque démonstration                                  | Implémenté | 2026-11-21 — « I approve 038 »             |
+| BKL-040 | Réserver l'éditeur local à la création et à l'édition de séquences                          | Proposé — en attente d’approbation | — |
 
 ## BKL-001 — Timeline sous le viewport de la patinoire
 
@@ -1164,3 +1165,26 @@ Le menu reste accessible via un bouton Retour/Accueil une fois une séquence cha
 - Les dialogues/panneaux de sélection ne sont pas implémentés ; à développer au jalon M3 lorsque les APIs de catalogue seront prêtes.
 
 **Correction de navigation et validation réelle du 2026-11-21 :** l'accueil affiche à nouveau la navigation principale Espace équipe, Atelier (page courante) et Fondations, avec styles propres à l'accueil et adaptation mobile ; les autres pages et routes ne sont pas modifiées. Les 21 tests ciblés Playwright passent sur Chromium desktop/mobile et WebKit mobile émulé : liens et destinations, état courant, focus et activation clavier, absence de débordement à 320 px, création et retour. `pnpm lint`, `pnpm typecheck`, `pnpm test` (197 tests), `pnpm build`, Prettier sur les deux fichiers de code modifiés et `git diff --check` passent. La vérification Prettier du backlog échoue aussi sur sa version antérieure, non reformatée ici. Pas de validation sur appareil réel ni de suite E2E complète. BKL-039 reste en cours : les deux chargements sont désactivés et leurs parcours ne sont pas validés.
+
+## BKL-040 — Éditeur local réservé aux séquences
+
+**Date de proposition :** 2026-11-21. **Demandeur :** utilisateur. **Statut :** Proposé — en attente d’approbation.
+
+**Demande :** « editor-local should not show "Echec avan 2-1-2", it should be restricted to creating/editing sequences. »
+
+**Constat :** la création depuis l'accueil fabrique une séquence dans l'état Atelier, mais l'éditeur utilise son propre état et peut afficher le scénario par défaut « Échec avant · 2-1-2 », voire un ancien brouillon de scénario, avec les commandes de simulation plutôt que la timeline.
+
+**Comportement proposé :** ouvrir effectivement une nouvelle séquence vierge depuis l'accueil, avec un titre neutre et la timeline d'édition. Réserver `/editor-local` aux séquences : ne pas y présenter le mode scénario autonome, son titre tactique par défaut ni ses commandes de simulation; conserver les outils nécessaires à la création, à la modification, à la lecture et à la sauvegarde des séquences. Un accès direct sans séquence active retourne à l'accueil ou propose explicitement de créer une séquence. Ne pas effacer silencieusement les brouillons existants : les conserver et avertir avant toute action qui les remplacerait.
+
+**Périmètre prévu :** transition accueil → éditeur, initialisation et état de l'éditeur local, présentation des commandes de séquence, protection des brouillons et documentation associée. Ne pas supprimer les tactiques, les simulations ou leurs données dans les autres espaces; ne pas modifier le format de stockage. Le chargement de séquences et de tactiques demeure dans le périmètre de BKL-039.
+
+**Critères d'acceptation :**
+
+- Créer depuis l'accueil ouvre immédiatement une nouvelle séquence éditable et sa timeline, sans titre « Échec avant · 2-1-2 » ni ancien brouillon chargé comme nouvelle séquence.
+- L'éditeur local ne présente ni scénario autonome ni commandes de simulation de scénario; ses commandes de séquence restent utilisables.
+- L'accès direct, le retour à l'accueil et la reprise ou le remplacement d'un brouillon ne détruisent pas silencieusement les données existantes.
+- Les données et parcours de tactique et de simulation ailleurs dans l'application restent disponibles et inchangés.
+
+**Validation prévue :** tests unitaires de l'initialisation et de la protection des brouillons; tests navigateur Chromium desktop/mobile et WebKit mobile pour création, édition, accès direct et retour; non-régression des séquences, des tactiques et de la simulation; lint, typage et build.
+
+**Décision utilisateur :** en attente.
