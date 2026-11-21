@@ -1,4 +1,15 @@
-import type { Scenario, ContextPhase } from '@hockey-iq/contracts';
+import type {
+  Scenario,
+  ContextPhase,
+  TacticalTemplate,
+} from '@hockey-iq/contracts';
+export const TEMPLATE_ENGLISH_NAMES: Record<TacticalTemplate, string> = {
+  FORECHECK_212: 'Forecheck 2-1-2',
+  BOARDS_BREAKOUT: 'Boards Breakout',
+  D_TO_D_REVERSE: 'D-to-D Reverse',
+  LOW_CENTER_SUPPORT: 'Low Center Support',
+  UNDER_PRESSURE_BREAKOUT: 'Under Pressure Breakout',
+};
 export const POSITION_NAMES: Record<string, string> = {
   LW: 'Ailier gauche',
   C: 'Centre',

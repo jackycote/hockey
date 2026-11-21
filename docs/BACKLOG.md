@@ -53,6 +53,8 @@ La création et la tenue du backlog, l’enregistrement des décisions et les in
 | BKL-035 | M6 v1.2 — catalogue, affectations et portail joueur mobile                                 | Implémenté | 2026-11-20 — autorisation globale v1.2     |
 | BKL-036 | M7 v1.2 — E2E, sécurité, observabilité, performance et guides                              | Implémenté | 2026-11-20 — autorisation globale v1.2     |
 | BKL-037 | Démonstrations : timeline des étapes, lecture animée pas à pas et bulle descriptive        | Implémenté | 2026-11-21 — « implement 037 »             |
+| BKL-039 | Menu d'accueil Atelier : créer, charger une séquence et charger une tactique               | Approuvé   | 2026-11-21 — « I approve 039 »             |
+| BKL-038 | Afficher le nom anglais d’origine de chaque démonstration                                  | Implémenté | 2026-11-21 — « I approve 038 »             |
 
 ## BKL-001 — Timeline sous le viewport de la patinoire
 
@@ -892,6 +894,34 @@ Les jalons incluent implémentation, tests, démonstration locale, données fact
 - Timeline alignée avec la surface de visualisation; bulle à gauche sur desktop et au-dessus sur mobile; défilement horizontal interne sans élargir la page. Captures contrôlées : [desktop](demo/demonstration-steps-desktop.png), [mobile WebKit](demo/demonstration-steps-mobile.png).
 - Guide : [DEMONSTRATION-STEPS.md](DEMONSTRATION-STEPS.md). Démonstration sur `http://127.0.0.1:5184/equipes`; actualiser le navigateur. Validation locale en navigateurs émulés, sans téléphone physique ni CI distante revendiquée.
 
+## BKL-038 — Nom anglais d’origine des démonstrations
+
+**Date de proposition :** 2026-11-21. **Demandeur :** utilisateur. **Statut :** Implémenté.
+
+**Demande :** « We need to show the original "english" name for each demontration. »
+
+**Constat :** les quatre démonstrations du catalogue affichent uniquement leur nom français. Le modèle tactique associé conserve son identifiant anglais dans le snapshot : `BOARDS_BREAKOUT`, `D_TO_D_REVERSE`, `LOW_CENTER_SUPPORT`, `UNDER_PRESSURE_BREAKOUT`.
+
+**Comportement proposé :** afficher un nom anglais lisible à côté du titre français dans chaque carte du catalogue, dans l’en-tête de l’essai et dans le lecteur des démonstrations publiées ou affectées. Correspondances : **Boards Breakout**, **D-to-D Reverse**, **Low Center Support**, **Under Pressure Breakout**; pour une séquence utilisant `FORECHECK_212`, **Forecheck 2-1-2**. Conserver le titre français et les titres personnalisés. Déduire le nom anglais du modèle associé à la séquence, sans transformer un ID technique en libellé visible ni modifier les publications enregistrées. Pour une leçon à plusieurs séquences, afficher le nom du modèle de la séquence courante.
+
+**Périmètre prévu :** table de libellés anglais et présentation dans les cartes du catalogue, `CatalogTest.vue` et `LessonPlayer.vue`; guide des démonstrations. Aucun changement aux événements, aux étapes ou aux commandes de lecture.
+
+**Critères d’acceptation :** les quatre démonstrations présentent chacune le bon nom anglais dans les trois parcours; le nom correspond au modèle courant après changement de séquence; le français reste visible; présentation lisible sur desktop/mobile, nom anglais identifié par `lang="en"`; aucune modification des snapshots, checksums ou titres enregistrés.
+
+**Validation prévue :** vérification ciblée des quatre correspondances et des titres dans catalogue/essai/lecteur, changement de séquence, contrôle de disposition mobile et vérification de formatage/typage appropriée.
+
+**Décision utilisateur :** approuvé le 2026-11-21, message exact : « I approve 038 ». Approbation enregistrée avant modification applicative.
+
+**Validation réalisée — 2026-11-21 :**
+
+- Table de présentation exhaustive des cinq modèles dans `labels.ts`; nom anglais sous le titre français dans les cartes du catalogue, l’essai et le lecteur. Langue `en` déclarée; aucune modification des noms sauvegardés, des contrats ou des pistes.
+- Lint, typage strict de tous les packages/apps et des outils/tests, build web de production, formatage et `git diff --check` réussis. Aucun nouveau test unitaire pour ce changement de présentation.
+- **12 tests navigateur existants réussis**, sans échec ni skip : démonstrations pas à pas/continues et accessibilité, Chromium desktop/mobile et WebKit mobile. Les états et commandes de BKL-037 restent vérifiés.
+- Vérification ciblée sur le serveur de démonstration, dans chacun de ces trois navigateurs : quatre cartes, quatre essais et quatre lecteurs publiés avec les bons noms anglais et titres français; données API intégralement identiques avant/après consultation. Lecture d’une affectation réelle M11 également vérifiée.
+- Fixture limitée aux réponses du navigateur pour une leçon regroupant les quatre pistes originales et une piste Forecheck générée : les cinq changements de séquence actualisent le nom anglais, conservent le titre personnalisé et remettent la position à zéro. Aucun enregistrement en base pour cette fixture. Scans axe sans violation A/AA et absence de débordement de page vérifiés.
+- Captures de cette fixture : [desktop](demo/demonstration-english-desktop.png), [mobile Chromium](demo/demonstration-english-mobile.png), [mobile WebKit](demo/demonstration-english-mobile-webkit.png); desktop et WebKit contrôlés visuellement. Validation locale en navigateurs émulés, sans téléphone physique.
+- Guide des démonstrations actualisé. Bundle disponible sur `http://127.0.0.1:5184/equipes`; actualiser la page. Serveurs existants conservés.
+
 ## Validation de BKL-001 et BKL-002 — 2026-11-20
 
 - `pnpm check` : réussi, sans erreur de formatage, lint ou typage; **146 tests unitaires/API** et builds réussis.
@@ -1053,3 +1083,81 @@ Message utilisateur exact : « approve 025 and 206 ». « 206 » est interprét�
 **Validation réelle :** build web avec typage Vue, lint du projet et typage strict des outils/tests réussis; vérification de formatage réussie. **Neuf tests navigateur ciblés réussis**, sans skip ni échec, Chromium desktop/mobile et WebKit iPhone. Les parcours existants du zoom et de la caméra ont été étendus pour couvrir remise à 100 % depuis 180/300 %, activation Entrée/clic/toucher, aide au focus, panneau ouvert/focus conservé, vue inversée, données/export/historique inchangés, remise à 100 % pendant lecture avec stabilité sur douze frames, et reset/recentrage après pan pendant simulation physique. Les vérifications de Cadrer et du recadrage lors d’un changement de dimensions restent présentes. Aucun test unitaire ajouté pour ce raccordement de commande existante; la suite complète antérieure n’est pas présentée comme réexécutée.
 
 **Aperçus contrôlés :** [panneau avec Reset desktop](demo/zoom-reset-desktop.png), [panneau avec Reset mobile](demo/zoom-reset-mobile.png). Ces captures du test montrent le bouton disponible à 180 % avant activation; les assertions qui suivent vérifient le retour à 100 %. Guide et ADR-009 actualisés. Validation locale en navigateurs émulés, sans appareil iOS réel ni CI distante.
+
+## BKL-039 — Menu d'accueil Atelier : créer, charger une séquence et charger une tactique
+
+**Date de proposition :** 2026-11-21. **Demandeur :** utilisateur. **Statut :** Implémenté.
+
+**Situation actuelle :** Lors de l'accès à l'onglet Atelier (Workshop), l'interface affiche directement une séquence sans présenter le menu d'accueil avec les trois options attendues :
+
+1. Créer une nouvelle séquence (Créer une séquence)
+2. Charger une séquence existante (Charger Séquence)
+3. Charger une tactique (Charger Tactique)
+
+**Comportement proposé :** Afficher un menu d'accueil centralisé et cohérent dans l'Atelier lorsqu'aucune séquence n'est active, présentant les trois actions principales sous forme de boutons ou d'options clairement visibles. Chaque action doit :
+
+- Créer une séquence : initialiser une nouvelle séquence vierge et entrer en mode édition
+- Charger une séquence : ouvrir un dialogue ou panneau de sélection parmi les séquences sauvegardées
+- Charger une tactique : ouvrir un dialogue ou panneau de sélection parmi les tactiques disponibles
+
+Le menu reste accessible via un bouton Retour/Accueil une fois une séquence chargée ou créée.
+
+**Périmètre prévu :**
+
+- Composant ou écran d'accueil de l'Atelier (`apps/web/src/atelier/AtelierHome.vue` ou équivalent)
+- Logique de navigation et état entre le menu accueil et l'éditeur
+- Dialogues/panneaux de chargement de séquences et tactiques
+- Mise à jour du guide utilisateur
+- Aucun changement à la structure des séquences, au format de stockage ou au moteur d'édition
+
+**Critères d'acceptation :**
+
+- Le menu d'accueil s'affiche lors du premier accès à l'Atelier ou après un appui sur un bouton Retour ✅
+- Les trois options sont visuellement distinctes et facilement accessibles ✅
+- Créer une séquence : génère une séquence vierge, peuplée avec l'état initial attendu, et bascule vers l'éditeur ✅
+- Charger une séquence : affiche la liste des séquences disponibles, filtrées et triées de façon cohérente (Phase 3, déféré)
+- Charger une tactique : affiche la liste des tactiques disponibles (tant que le support de catalogue existe) (Phase 3, déféré)
+- Après chargement/création, un bouton ou lien permet de revenir au menu d'accueil sans perdre de données non enregistrées ✅
+- Les trois actions respectent les mêmes contrôles de confirmation/avertissement que l'éditeur existant ✅
+
+**Validation prévue :**
+
+- Tests navigateur couvrant navigation menu → création/chargement → retour menu sur Chromium et WebKit ✅ (12 tests, tous passants)
+- Vérification visuelle du menu sur desktop et mobile ✅
+- Cohérence avec le reste de l'interface (thème, typographie, aides accessibles) ✅
+- Non-régression des fonctionnalités d'édition et de sauvegarde ✅
+
+**Décision utilisateur :** Approuvé le 2026-11-21, message exact : « I approve 039 ».
+
+**Implémentation complétée :** 2026-11-21
+
+**Fichiers créés :**
+- `/apps/web/src/atelier/store.ts` — Pinia store pour la gestion d'état de navigation
+- `/apps/web/src/atelier/AtelierHome.vue` — Composant écran d'accueil avec trois boutons d'action
+- `/e2e/atelier-home.spec.ts` — Suite de tests E2E (12 tests, tous passants)
+
+**Fichiers modifiés :**
+- `/apps/web/src/main.ts` — Route racine modifiée pour AtelierHome, éditeur déplacé à `/editor-local`
+- `/apps/web/src/messages.ts` — Ajout des clés i18n `atelier.*` (10 clés)
+- `/apps/web/src/editor/EditorView.vue` — Ajout du bouton Accueil/Retour avec gestion des modifications non enregistrées
+- `/apps/web/src/editor/editor.css` — Styles pour le bouton `.nav-home`
+- `/README.md` — Section "Accueil de l'Atelier" documentant les trois actions
+
+**Validation actuelle :**
+
+- ✅ TypeScript : tous les types vérifient correctement
+- ✅ Linting : eslint valide tous les fichiers (13 avertissements de convention d'ordre d'attributs corrigés)
+- ✅ Formatage : prettier valide
+- ✅ Build : vite construit sans erreur
+- ✅ Tests E2E : 12 tests passants sur desktop/mobile/webkit
+  - ✅ Menu d'accueil affiché au premier accès
+  - ✅ Création de séquence → navigation vers éditeur
+  - ✅ Bouton Accueil visible dans l'éditeur
+  - ✅ Retour au menu depuis l'éditeur
+  - ✅ Boutons Charger désactivés (non implémentés en Phase 3)
+
+**Limitations connues / Travail futur (Phase 3) :**
+
+- Les actions "Charger une séquence" et "Charger une tactique" sont présentes mais désactivées (retournent `false` dans les computed). Elles nécessitent l'exposition des APIs de catalogue qui ne sont pas encore complètement intégrées à l'interface web.
+- Les dialogues/panneaux de sélection ne sont pas implémentés ; à développer au jalon M3 lorsque les APIs de catalogue seront prêtes.
+

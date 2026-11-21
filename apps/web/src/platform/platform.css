@@ -42,6 +42,12 @@
 .platform-app p {
   line-height: 1.6;
 }
+.platform-app .demonstration-english-name {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
 .platform-app button,
 .platform-link-button {
   font-size: 13px;

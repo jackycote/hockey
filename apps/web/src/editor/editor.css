@@ -56,9 +56,22 @@
   margin-left: 20px;
   font-size: 12px;
 }
-.editor-nav a {
+.editor-nav a,
+.editor-nav .nav-home {
   text-decoration: none;
   color: var(--muted);
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.editor-nav .nav-home {
+  font-weight: 600;
+  color: var(--blue);
+}
+.editor-nav .nav-home:hover {
+  color: var(--blue-strong);
 }
 .editor-nav [aria-current='page'] {
   color: var(--text);

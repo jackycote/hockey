@@ -192,5 +192,24 @@ export const messages = {
     footer: 'Hockey mineur · M11 à M18 · Français d’abord',
     note: 'Version de développement. Aucun compte ni renseignement de joueur n’est recueilli.',
     contract: 'Contrats de données · version {version}',
+    atelier: {
+      eyebrow: 'ATELIER TACTIQUE',
+      title: 'Préparez votre stratégie',
+      intro:
+        'Créez une nouvelle séquence, chargez une scène enregistrée, ou explorez une tactique du catalogue.',
+      actions: 'Actions principales',
+      createSequence: 'Créer une séquence',
+      createSequenceSub: "Partez d'une situation vierge",
+      createSequenceLabel: "Créer une nouvelle séquence d'entraînement",
+      loadSequence: 'Charger une séquence',
+      loadSequenceSub: 'Ouvrir une séquence existante',
+      loadSequenceLabel: 'Charger une séquence déjà créée',
+      loadTactic: 'Charger une tactique',
+      loadTacticSub: 'Découvrir le catalogue',
+      loadTacticLabel: 'Charger une tactique du catalogue',
+      error: {
+        generic: "Une erreur s'est produite. Veuillez réessayer.",
+      },
+    },
   },
 };

@@ -2,6 +2,7 @@
 import { ref, shallowRef, watch, onBeforeUnmount } from 'vue';
 import type { SequenceV12 } from '@hockey-iq/contracts';
 import DemonstrationPlayer from './DemonstrationPlayer.vue';
+import { TEMPLATE_ENGLISH_NAMES } from './labels';
 const props = defineProps<{ source: SequenceV12 }>();
 const sequence = shallowRef<SequenceV12>(),
   error = ref(''),
@@ -59,6 +60,9 @@ onBeforeUnmount(() => {
 <template>
   <section class="platform-card" aria-label="Simulation du catalogue">
     <h2>Essayer le modèle · {{ source.systemSnapshot.name }}</h2>
+    <p class="demonstration-english-name" lang="en">
+      {{ TEMPLATE_ENGLISH_NAMES[source.systemSnapshot.template] }}
+    </p>
     <p>Suivez les étapes de la démonstration, ou choisissez Tout lire.</p>
     <p v-if="error" role="alert">{{ error }}</p>
     <DemonstrationPlayer

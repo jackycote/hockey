@@ -11,6 +11,8 @@ import {
 } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Scenario, TacticalRole } from '@hockey-iq/contracts';
+import { useRouter } from 'vue-router';
+import { useAtelierStore } from '../atelier/store';
 import Icon from './Icon.vue';
 import RinkZoom from './RinkZoom.vue';
 import RinkBoard from './RinkBoard.vue';
@@ -32,6 +34,8 @@ import {
 import type { EntityKey, Tool } from './scenario';
 import './editor.css';
 const { t } = useI18n();
+const router = useRouter();
+const atelier = useAtelierStore();
 const store = useEditorStore();
 const board = ref<InstanceType<typeof RinkBoard>>();
 const timelineHeader = ref<InstanceType<typeof TimelineHeader>>();
@@ -137,6 +141,20 @@ async function createSequence() {
   await nextTick();
   timelineHeader.value?.revealHeading();
 }
+
+function goHome() {
+  if (atelier.hasUnsavedChanges) {
+    const confirmed = window.confirm(
+      t('editor.errors.unrecordedStep')
+        ? t('editor.errors.unrecordedStep')
+        : 'Des modifications non enregistrées seront perdues. Continuer ?',
+    );
+    if (!confirmed) return;
+  }
+  atelier.goHome();
+  void router.push('/');
+}
+
 function selectRoster(key: EntityKey) {
   store.select(key);
   inspectorTab.value = 'player';
@@ -349,8 +367,17 @@ onBeforeUnmount(() => {
     <header class="editor-header">
       <Brand />
       <nav class="editor-nav" aria-label="Navigation principale">
+        <button
+          type="button"
+          class="nav-home"
+          :title="t('atelier.title')"
+          :aria-label="t('atelier.title')"
+          @click="goHome"
+        >
+          ← Atelier
+        </button>
         <RouterLink to="/equipes">Espace équipe</RouterLink>
-        <RouterLink to="/" aria-current="page">{{
+        <RouterLink to="/editor-local" aria-current="page">{{
           t('editor.workspace')
         }}</RouterLink><RouterLink to="/fondation">{{
           t('editor.foundation')

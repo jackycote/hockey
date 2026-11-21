@@ -9,7 +9,11 @@ import './style.css';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: () => import('./editor/EditorView.vue') },
+    { path: '/', component: () => import('./atelier/AtelierHome.vue') },
+    {
+      path: '/editor-local',
+      component: () => import('./editor/EditorView.vue'),
+    },
     { path: '/fondation', component: FoundationView },
     {
       path: '/equipes',
