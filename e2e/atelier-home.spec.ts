@@ -1,5 +1,73 @@
 import { expect, test } from '@playwright/test';
 
+test('principal navigation is visible, styled and fits the home page', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const nav = page.getByRole('navigation', { name: 'Navigation principale' });
+  const teamLink = nav.getByRole('link', { name: 'Espace équipe' });
+  const atelierLink = nav.getByRole('link', { name: 'Atelier', exact: true });
+  const foundationLink = nav.getByRole('link', { name: 'Fondations' });
+  const links = [teamLink, atelierLink, foundationLink];
+
+  await expect(nav).toBeVisible();
+  for (const link of links) await expect(link).toBeVisible();
+  await expect(teamLink).toHaveAttribute('href', '/equipes');
+  await expect(atelierLink).toHaveAttribute('href', '/');
+  await expect(atelierLink).toHaveAttribute('aria-current', 'page');
+  await expect(foundationLink).toHaveAttribute('href', '/fondation');
+  await expect(atelierLink).toHaveCSS('font-weight', '700');
+  await expect(atelierLink).toHaveCSS('text-decoration-line', 'none');
+
+  await page.setViewportSize({ width: 320, height: 800 });
+  for (const link of links) {
+    const box = await link.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(320);
+  }
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+});
+
+test('principal links open their existing destinations', async ({ page }) => {
+  await page.goto('/');
+  const nav = page.getByRole('navigation', { name: 'Navigation principale' });
+  await nav.getByRole('link', { name: 'Espace équipe' }).click();
+  await expect(page).toHaveURL('/equipes');
+  await expect(
+    page.getByRole('heading', {
+      name: 'Préparer ensemble. Comprendre le jeu.',
+    }),
+  ).toBeVisible();
+
+  await page.goto('/');
+  await nav.getByRole('link', { name: 'Fondations' }).click();
+  await expect(page).toHaveURL('/fondation');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Chaque bonne décision commence par une lecture du jeu.',
+  );
+});
+
+test('principal navigation supports keyboard focus and activation', async ({
+  page,
+  browserName,
+}) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'HockeyDoo — accueil' }).focus();
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+  const teamLink = page
+    .getByRole('navigation', { name: 'Navigation principale' })
+    .getByRole('link', { name: 'Espace équipe' });
+  await expect(teamLink).toBeFocused();
+  await expect(teamLink).toHaveCSS('outline-style', 'solid');
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL('/equipes');
+});
+
 test('shows home menu on first visit', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));

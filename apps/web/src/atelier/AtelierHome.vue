@@ -86,7 +86,13 @@ async function handleLoadTactic() {
   <div class="shell atelier-home">
     <header>
       <Brand />
-      <div class="header-spacer"></div>
+      <nav class="atelier-nav" aria-label="Navigation principale">
+        <RouterLink to="/equipes">Espace équipe</RouterLink>
+        <RouterLink to="/" aria-current="page">{{
+          t('editor.workspace')
+        }}</RouterLink>
+        <RouterLink to="/fondation">{{ t('editor.foundation') }}</RouterLink>
+      </nav>
     </header>
 
     <main class="atelier-main">
@@ -171,8 +177,42 @@ header {
   flex-shrink: 0;
 }
 
-.header-spacer {
-  flex-grow: 1;
+.atelier-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-right: auto;
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+.atelier-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.atelier-nav [aria-current='page'] {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.atelier-nav a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  header {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .atelier-nav {
+    width: 100%;
+    margin: 0;
+    gap: 18px;
+    padding: 5px 0 0;
+  }
 }
 
 .atelier-main {

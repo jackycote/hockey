@@ -53,7 +53,7 @@ La création et la tenue du backlog, l’enregistrement des décisions et les in
 | BKL-035 | M6 v1.2 — catalogue, affectations et portail joueur mobile                                 | Implémenté | 2026-11-20 — autorisation globale v1.2     |
 | BKL-036 | M7 v1.2 — E2E, sécurité, observabilité, performance et guides                              | Implémenté | 2026-11-20 — autorisation globale v1.2     |
 | BKL-037 | Démonstrations : timeline des étapes, lecture animée pas à pas et bulle descriptive        | Implémenté | 2026-11-21 — « implement 037 »             |
-| BKL-039 | Menu d'accueil Atelier : créer, charger une séquence et charger une tactique               | Approuvé   | 2026-11-21 — « I approve 039 »             |
+| BKL-039 | Menu d'accueil Atelier : créer, charger une séquence et charger une tactique               | En cours   | 2026-11-21 — « I approve 039 »             |
 | BKL-038 | Afficher le nom anglais d’origine de chaque démonstration                                  | Implémenté | 2026-11-21 — « I approve 038 »             |
 
 ## BKL-001 — Timeline sous le viewport de la patinoire
@@ -1086,7 +1086,7 @@ Message utilisateur exact : « approve 025 and 206 ». « 206 » est interprét�
 
 ## BKL-039 — Menu d'accueil Atelier : créer, charger une séquence et charger une tactique
 
-**Date de proposition :** 2026-11-21. **Demandeur :** utilisateur. **Statut :** Implémenté.
+**Date de proposition :** 2026-11-21. **Demandeur :** utilisateur. **Statut :** En cours.
 
 **Situation actuelle :** Lors de l'accès à l'onglet Atelier (Workshop), l'interface affiche directement une séquence sans présenter le menu d'accueil avec les trois options attendues :
 
@@ -1117,19 +1117,21 @@ Le menu reste accessible via un bouton Retour/Accueil une fois une séquence cha
 - Créer une séquence : génère une séquence vierge, peuplée avec l'état initial attendu, et bascule vers l'éditeur ✅
 - Charger une séquence : affiche la liste des séquences disponibles, filtrées et triées de façon cohérente (Phase 3, déféré)
 - Charger une tactique : affiche la liste des tactiques disponibles (tant que le support de catalogue existe) (Phase 3, déféré)
-- Après chargement/création, un bouton ou lien permet de revenir au menu d'accueil sans perdre de données non enregistrées ✅
-- Les trois actions respectent les mêmes contrôles de confirmation/avertissement que l'éditeur existant ✅
+- Après création, un bouton permet de revenir au menu avec avertissement en cas de modifications non enregistrées ; le retour après chargement reste à vérifier.
+- Les trois actions respectent les mêmes contrôles de confirmation/avertissement que l'éditeur existant : non vérifié pour les actions de chargement désactivées.
 
 **Validation prévue :**
 
-- Tests navigateur couvrant navigation menu → création/chargement → retour menu sur Chromium et WebKit ✅ (12 tests, tous passants)
-- Vérification visuelle du menu sur desktop et mobile ✅
-- Cohérence avec le reste de l'interface (thème, typographie, aides accessibles) ✅
-- Non-régression des fonctionnalités d'édition et de sauvegarde ✅
+- Tests navigateur couvrant navigation menu → création/chargement → retour menu sur Chromium et WebKit : création et retour couverts ; chargement non implémenté.
+- Vérification visuelle du menu sur desktop et mobile : à compléter pour l'ensemble du périmètre.
+- Cohérence avec le reste de l'interface (thème, typographie, aides accessibles) : à compléter.
+- Non-régression des fonctionnalités d'édition et de sauvegarde : à compléter pour l'ensemble du périmètre.
 
 **Décision utilisateur :** Approuvé le 2026-11-21, message exact : « I approve 039 ».
 
-**Implémentation complétée :** 2026-11-21
+**Régression signalée le 2026-11-21 :** « I got no more navigation now, see pasted image ». La correction rétablit la navigation principale sur l'accueil Atelier.
+
+**Implémentation partielle :** 2026-11-21 ; les chargements restent à faire.
 
 **Fichiers créés :**
 - `/apps/web/src/atelier/store.ts` — Pinia store pour la gestion d'état de navigation
@@ -1143,7 +1145,7 @@ Le menu reste accessible via un bouton Retour/Accueil une fois une séquence cha
 - `/apps/web/src/editor/editor.css` — Styles pour le bouton `.nav-home`
 - `/README.md` — Section "Accueil de l'Atelier" documentant les trois actions
 
-**Validation actuelle :**
+**Validation antérieure rapportée (implémentation partielle) :**
 
 - ✅ TypeScript : tous les types vérifient correctement
 - ✅ Linting : eslint valide tous les fichiers (13 avertissements de convention d'ordre d'attributs corrigés)
@@ -1161,3 +1163,4 @@ Le menu reste accessible via un bouton Retour/Accueil une fois une séquence cha
 - Les actions "Charger une séquence" et "Charger une tactique" sont présentes mais désactivées (retournent `false` dans les computed). Elles nécessitent l'exposition des APIs de catalogue qui ne sont pas encore complètement intégrées à l'interface web.
 - Les dialogues/panneaux de sélection ne sont pas implémentés ; à développer au jalon M3 lorsque les APIs de catalogue seront prêtes.
 
+**Correction de navigation et validation réelle du 2026-11-21 :** l'accueil affiche à nouveau la navigation principale Espace équipe, Atelier (page courante) et Fondations, avec styles propres à l'accueil et adaptation mobile ; les autres pages et routes ne sont pas modifiées. Les 21 tests ciblés Playwright passent sur Chromium desktop/mobile et WebKit mobile émulé : liens et destinations, état courant, focus et activation clavier, absence de débordement à 320 px, création et retour. `pnpm lint`, `pnpm typecheck`, `pnpm test` (197 tests), `pnpm build`, Prettier sur les deux fichiers de code modifiés et `git diff --check` passent. La vérification Prettier du backlog échoue aussi sur sa version antérieure, non reformatée ici. Pas de validation sur appareil réel ni de suite E2E complète. BKL-039 reste en cours : les deux chargements sont désactivés et leurs parcours ne sont pas validés.
