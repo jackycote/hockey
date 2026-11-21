@@ -53,6 +53,8 @@ La création et la tenue du backlog, l’enregistrement des décisions et les in
 | BKL-035 | M6 v1.2 — catalogue, affectations et portail joueur mobile                                 | Implémenté | 2026-11-20 — autorisation globale v1.2     |
 | BKL-036 | M7 v1.2 — E2E, sécurité, observabilité, performance et guides                              | Implémenté | 2026-11-20 — autorisation globale v1.2     |
 | BKL-037 | Démonstrations : timeline des étapes, lecture animée pas à pas et bulle descriptive        | Implémenté | 2026-11-21 — « implement 037 »             |
+| BKL-038 | Afficher le nom anglais d’origine de chaque démonstration                                  | Implémenté | 2026-11-21 — « I approve 038 »             |
+| BKL-039 | Uniformiser le libellé de navigation vers l’atelier                                        | Implémenté | 2026-11-21 — « I approve 039 »             |
 
 ## BKL-001 — Timeline sous le viewport de la patinoire
 
@@ -891,6 +893,54 @@ Les jalons incluent implémentation, tests, démonstration locale, données fact
 - Piste d'essai D à D de 12 secondes préparée dans le Worker; sept étapes observées, dont renversement à 0,63 s, réception à 1,57 s et sortie de zone à 4,07 s. Hashes comparés au moteur Node et checksum publié vérifié inchangé après utilisation.
 - Timeline alignée avec la surface de visualisation; bulle à gauche sur desktop et au-dessus sur mobile; défilement horizontal interne sans élargir la page. Captures contrôlées : [desktop](demo/demonstration-steps-desktop.png), [mobile WebKit](demo/demonstration-steps-mobile.png).
 - Guide : [DEMONSTRATION-STEPS.md](DEMONSTRATION-STEPS.md). Démonstration sur `http://127.0.0.1:5184/equipes`; actualiser le navigateur. Validation locale en navigateurs émulés, sans téléphone physique ni CI distante revendiquée.
+
+## BKL-038 — Nom anglais d’origine des démonstrations
+
+**Date de proposition :** 2026-11-21. **Demandeur :** utilisateur. **Statut :** Implémenté.
+
+**Demande :** « We need to show the original "english" name for each demontration. »
+
+**Constat :** les quatre démonstrations du catalogue affichent uniquement leur nom français. Le modèle tactique associé conserve son identifiant anglais dans le snapshot : `BOARDS_BREAKOUT`, `D_TO_D_REVERSE`, `LOW_CENTER_SUPPORT`, `UNDER_PRESSURE_BREAKOUT`.
+
+**Comportement proposé :** afficher un nom anglais lisible à côté du titre français dans chaque carte du catalogue, dans l’en-tête de l’essai et dans le lecteur des démonstrations publiées ou affectées. Correspondances : **Boards Breakout**, **D-to-D Reverse**, **Low Center Support**, **Under Pressure Breakout**; pour une séquence utilisant `FORECHECK_212`, **Forecheck 2-1-2**. Conserver le titre français et les titres personnalisés. Déduire le nom anglais du modèle associé à la séquence, sans transformer un ID technique en libellé visible ni modifier les publications enregistrées. Pour une leçon à plusieurs séquences, afficher le nom du modèle de la séquence courante.
+
+**Périmètre prévu :** table de libellés anglais et présentation dans les cartes du catalogue, `CatalogTest.vue` et `LessonPlayer.vue`; guide des démonstrations. Aucun changement aux événements, aux étapes ou aux commandes de lecture.
+
+**Critères d’acceptation :** les quatre démonstrations présentent chacune le bon nom anglais dans les trois parcours; le nom correspond au modèle courant après changement de séquence; le français reste visible; présentation lisible sur desktop/mobile, nom anglais identifié par `lang="en"`; aucune modification des snapshots, checksums ou titres enregistrés.
+
+**Validation prévue :** vérification ciblée des quatre correspondances et des titres dans catalogue/essai/lecteur, changement de séquence, contrôle de disposition mobile et vérification de formatage/typage appropriée.
+
+**Décision utilisateur :** approuvé le 2026-11-21, message exact : « I approve 038 ». Approbation enregistrée avant modification applicative.
+
+**Validation réalisée — 2026-11-21 :**
+
+- Table de présentation exhaustive des cinq modèles dans `labels.ts`; nom anglais sous le titre français dans les cartes du catalogue, l’essai et le lecteur. Langue `en` déclarée; aucune modification des noms sauvegardés, des contrats ou des pistes.
+- Lint, typage strict de tous les packages/apps et des outils/tests, build web de production, formatage et `git diff --check` réussis. Aucun nouveau test unitaire pour ce changement de présentation.
+- **12 tests navigateur existants réussis**, sans échec ni skip : démonstrations pas à pas/continues et accessibilité, Chromium desktop/mobile et WebKit mobile. Les états et commandes de BKL-037 restent vérifiés.
+- Vérification ciblée sur le serveur de démonstration, dans chacun de ces trois navigateurs : quatre cartes, quatre essais et quatre lecteurs publiés avec les bons noms anglais et titres français; données API intégralement identiques avant/après consultation. Lecture d’une affectation réelle M11 également vérifiée.
+- Fixture limitée aux réponses du navigateur pour une leçon regroupant les quatre pistes originales et une piste Forecheck générée : les cinq changements de séquence actualisent le nom anglais, conservent le titre personnalisé et remettent la position à zéro. Aucun enregistrement en base pour cette fixture. Scans axe sans violation A/AA et absence de débordement de page vérifiés.
+- Captures de cette fixture : [desktop](demo/demonstration-english-desktop.png), [mobile Chromium](demo/demonstration-english-mobile.png), [mobile WebKit](demo/demonstration-english-mobile-webkit.png); desktop et WebKit contrôlés visuellement. Validation locale en navigateurs émulés, sans téléphone physique.
+- Guide des démonstrations actualisé. Bundle disponible sur `http://127.0.0.1:5184/equipes`; actualiser la page. Serveurs existants conservés.
+
+## BKL-039 — Libellé de navigation uniforme
+
+**Date de proposition :** 2026-11-21. **Demandeur :** utilisateur. **Statut :** Implémenté.
+
+**Demande :** « When in equipes route, the navigation shows "atelier libre" and when in root route, it shows "Atelier", I would like both roure to show "Atelir" »
+
+**Constat :** le lien vers `/` affiche « Atelier libre » sur `/equipes` et « Atelier » sur `/`. La valeur de l’éditeur sert aussi à nommer des éléments hors navigation.
+
+**Comportement approuvé :** afficher exactement « Atelier » pour le lien de navigation vers `/` sur les deux routes, selon la correction de l’utilisateur.
+
+**Périmètre prévu :** libellés de navigation de l’éditeur et de l’espace équipe, et tests associés. Préserver la destination des liens, leur état actif et les autres usages du mot « Atelier », y compris les noms accessibles hors navigation.
+
+**Critères d’acceptation :** sur `/` et `/equipes`, le lien de navigation vers `/` affiche « Atelier »; il mène toujours à `/`; les autres libellés restent inchangés.
+
+**Validation prévue :** vérifier les deux routes et leur navigation dans les tests navigateur existants, ainsi que le formatage, le lint et le typage concernés.
+
+**Décision utilisateur :** approuvé le 2026-11-21, message exact : « You need to show "Atelier", I approve 039 ». Approbation enregistrée avant modification applicative.
+
+**Validation réalisée — 2026-11-21 :** `pnpm check` réussi (197 tests unitaires/API), avant et après modification. Test de navigation sur les deux routes réussi sur Chromium desktop/mobile et WebKit mobile. Un premier essai parallèle a été interrompu par l’arrêt des serveurs de test; la reprise séquentielle a réussi. Navigateurs mobiles émulés, sans appareil physique.
 
 ## Validation de BKL-001 et BKL-002 — 2026-11-20
 

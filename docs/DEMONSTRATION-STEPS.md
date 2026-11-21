@@ -2,6 +2,8 @@
 
 Disponible dans **Catalogue → Essayer le modèle** et dans les démonstrations des leçons publiées. Le montage local de poses reste un parcours distinct.
 
+Les cartes du catalogue et les lecteurs affichent aussi le nom anglais d’origine sous le titre français : **Boards Breakout**, **D-to-D Reverse**, **Low Center Support** ou **Under Pressure Breakout** (BKL-038). Une séquence d’échec avant affiche **Forecheck 2-1-2**. Dans une leçon à plusieurs séquences, ce nom suit le modèle de la séquence sélectionnée; les titres personnalisés restent conservés. Il s’agit d’un libellé de présentation, sans modification des publications enregistrées.
+
 - **Tout lire** (triangle simple) lance la lecture continue. Les repères d'étape sont franchis sans arrêt; les pauses pédagogiques explicitement enregistrées dans une leçon restent respectées.
 - **Lire jusqu’à l’étape suivante** (triangle avec barre à droite) anime depuis la position courante jusqu'au prochain repère, puis s'arrête exactement. Réactiver la commande lance le segment suivant. Pendant la lecture, la même commande devient Pause; passer à l'autre mode conserve la position.
 - Les cartes numérotées sous la patinoire affichent le titre et le temps de chaque étape. Cliquer une carte, ou l'activer avec Entrée/Espace, place la démonstration à cet instant en pause. La tête de lecture rouge suit la progression. La timeline défile horizontalement dans son panneau sur petit écran.

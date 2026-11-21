@@ -49,6 +49,24 @@ async function expectMontageHeaderAtTop(page: Page) {
     .toBeLessThanOrEqual(1);
 }
 
+test('BKL-039 workshop navigation uses the same label on both routes', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const nav = page.getByRole('navigation', { name: 'Navigation principale' });
+  const workshop = nav.getByRole('link', { name: 'Atelier', exact: true });
+  await expect(workshop).toHaveAttribute('href', '/');
+  await expect(workshop).toHaveAttribute('aria-current', 'page');
+  await nav.getByRole('link', { name: 'Espace équipe', exact: true }).click();
+  await expect(page).toHaveURL(/\/equipes$/);
+  await expect(workshop).toHaveAttribute('href', '/');
+  await expect(workshop).not.toHaveAttribute('aria-current', 'page');
+  await workshop.click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(workshop).toHaveAttribute('aria-current', 'page');
+  await expect(toolbar(page)).toBeVisible();
+});
+
 test('BKL-011 vertical tools stay left of the rink and aligned timeline at responsive sizes', async ({
   page,
   isMobile,
