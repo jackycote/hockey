@@ -14,48 +14,49 @@ La création et la tenue du backlog, l’enregistrement des décisions et les in
 
 ## Vue d’ensemble
 
-| ID      | Proposition                                                                                | Statut     | Approbation                                |
-| ------- | ------------------------------------------------------------------------------------------ | ---------- | ------------------------------------------ |
-| BKL-001 | Timeline immédiatement sous la patinoire, de même largeur que son viewport                 | Implémenté | 2026-11-20 — « approve 001 and 002 »       |
-| BKL-002 | Commande de retour au début de la timeline                                                 | Implémenté | 2026-11-20 — « approve 001 and 002 »       |
-| BKL-003 | Icônes distinctes pour étape précédente/suivante                                           | Implémenté | 2026-11-20 — « I approve 003 »             |
-| BKL-004 | En-tête Montage au-dessus des trois panneaux et actions dans la rangée de navigation       | Implémenté | 2026-11-20 — « approve 004 »               |
-| BKL-005 | Bouton de création au-dessus des patineurs, remplacé par Montage après création            | Implémenté | 2026-11-20 — « approve 005 »               |
-| BKL-006 | Fiabiliser la pause Observation près de son instant exact                                  | Implémenté | 2026-11-20 — « approve 006, 023 and 024 »  |
-| BKL-007 | Barre sur une ligne, temps/vitesse à droite, insertion par icône et zoom vertical dépliant | Implémenté | 2026-11-20 — « yes » (approbation de 007)  |
-| BKL-008 | Inspecteur à deux onglets : joueur courant et étape courante                               | Implémenté | 2026-11-20 — « approve 008 and 009 »       |
-| BKL-009 | Icônes compactes pour Étape suivante et Enregistrer l’étape                                | Implémenté | 2026-11-20 — « approve 008 and 009 »       |
-| BKL-010 | Onglet Équipes à droite et déplacement du panneau gauche dans cet onglet                   | Implémenté | 2026-11-20 — « approce 010 »               |
-| BKL-011 | Outils de patinoire et annuler/rétablir en barre verticale à gauche                        | Implémenté | 2026-11-20 — « I approve 11,12 and 13 »    |
-| BKL-012 | Quatrième onglet Patinoire pour Rôles, Trajectoires et Grille                              | Implémenté | 2026-11-20 — « I approve 11,12 and 13 »    |
-| BKL-013 | Après création d’une séquence, amener le titre Montage en haut du viewport                 | Implémenté | 2026-11-20 — « I approve 11,12 and 13 »    |
-| BKL-014 | Supprimer la bande d’information au-dessus de la glace et agrandir le viewport             | Implémenté | 2026-11-20 — « approve 014, 015, 016 »     |
-| BKL-015 | Légende et contrôles de vue en bas du panneau, à la place de la consigne                   | Implémenté | 2026-11-20 — « approve 014, 015, 016 »     |
-| BKL-016 | Cadrer l’en-tête Montage complet après création, avec une petite marge supérieure          | Implémenté | 2026-11-20 — « approve 014, 015, 016 »     |
-| BKL-017 | Préserver le zoom et le pan pendant les mises à jour de lecture                            | Implémenté | 2026-11-20 — « approve 017 to 022 »        |
-| BKL-018 | Menu Insérer une étape avec option Ajouter une étape après la sélection                    | Implémenté | 2026-11-20 — « approve 017 to 022 »        |
-| BKL-019 | Commandes de zoom, cadrage et inversion dans la barre verticale à gauche                   | Implémenté | 2026-11-20 — « approve 017 to 022 »        |
-| BKL-020 | Identité visuelle HockeyDoo et intégration du logo fourni                                  | Implémenté | 2026-11-20 — « approve 017 to 022 »        |
-| BKL-021 | Panneau droit élargi de 15 %, de 320 à 368 px sur desktop                                  | Implémenté | 2026-11-20 — « approve 017 to 022 »        |
-| BKL-022 | Réinitialiser en première position en haut de la barre verticale                           | Implémenté | 2026-11-20 — « approve 017 to 022 »        |
-| BKL-023 | Libellés accessibles et aides textuelles pour toutes les commandes à icônes                | Implémenté | 2026-11-20 — « approve 006, 023 and 024 »  |
-| BKL-024 | Zoom de patinoire compact avec panneau horizontal dépliant vers la droite                  | Implémenté | 2026-11-20 — « approve 006, 023 and 024 »  |
-| BKL-025 | Réduire l’espacement vertical des icônes de la barre gauche                                | Implémenté | 2026-11-20 — « approve 025 »               |
-| BKL-026 | Bouton de remise à 100 % dans le panneau de zoom de la patinoire                           | Implémenté | 2026-11-20 — « approve 025 and 206 » (026) |
-| BKL-027 | M0 v1.2 — contrats, stockage PostgreSQL, migrations/seeds et architecture                  | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-028 | M1 v1.2 — projets et éditeur de scénarios intégrés                                         | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-029 | M2 v1.2 — exécution déterministe et enregistrement des interventions                       | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-030 | M3 v1.2 — 2-1-2 et quatre sorties de zone contextuelles                                    | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-031 | M3.5 v1.2 — systèmes, règles typées, validation et versions                                | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-032 | M4 v1.2 — replays figés, annotations et publication de leçons                              | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-033 | M5 v1.2 — organisations, équipes, membres, sessions et invitations                         | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-034 | M5.5 v1.2 — plans FREE/TEAM_PRO et quotas atomiques                                        | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-035 | M6 v1.2 — catalogue, affectations et portail joueur mobile                                 | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-036 | M7 v1.2 — E2E, sécurité, observabilité, performance et guides                              | Implémenté | 2026-11-20 — autorisation globale v1.2     |
-| BKL-037 | Démonstrations : timeline des étapes, lecture animée pas à pas et bulle descriptive        | Implémenté | 2026-11-21 — « implement 037 »             |
-| BKL-039 | Menu d'accueil Atelier : créer, charger une séquence et charger une tactique               | En cours   | 2026-11-21 — « I approve 039 »             |
-| BKL-038 | Afficher le nom anglais d’origine de chaque démonstration                                  | Implémenté | 2026-11-21 — « I approve 038 »             |
-| BKL-040 | Réserver l'éditeur local à la création et à l'édition de séquences                          | Proposé — en attente d’approbation | — |
+| ID      | Proposition                                                                                | Statut                             | Approbation                                                     |
+| ------- | ------------------------------------------------------------------------------------------ | ---------------------------------- | --------------------------------------------------------------- |
+| BKL-001 | Timeline immédiatement sous la patinoire, de même largeur que son viewport                 | Implémenté                         | 2026-11-20 — « approve 001 and 002 »                            |
+| BKL-002 | Commande de retour au début de la timeline                                                 | Implémenté                         | 2026-11-20 — « approve 001 and 002 »                            |
+| BKL-003 | Icônes distinctes pour étape précédente/suivante                                           | Implémenté                         | 2026-11-20 — « I approve 003 »                                  |
+| BKL-004 | En-tête Montage au-dessus des trois panneaux et actions dans la rangée de navigation       | Implémenté                         | 2026-11-20 — « approve 004 »                                    |
+| BKL-005 | Bouton de création au-dessus des patineurs, remplacé par Montage après création            | Implémenté                         | 2026-11-20 — « approve 005 »                                    |
+| BKL-006 | Fiabiliser la pause Observation près de son instant exact                                  | Implémenté                         | 2026-11-20 — « approve 006, 023 and 024 »                       |
+| BKL-007 | Barre sur une ligne, temps/vitesse à droite, insertion par icône et zoom vertical dépliant | Implémenté                         | 2026-11-20 — « yes » (approbation de 007)                       |
+| BKL-008 | Inspecteur à deux onglets : joueur courant et étape courante                               | Implémenté                         | 2026-11-20 — « approve 008 and 009 »                            |
+| BKL-009 | Icônes compactes pour Étape suivante et Enregistrer l’étape                                | Implémenté                         | 2026-11-20 — « approve 008 and 009 »                            |
+| BKL-010 | Onglet Équipes à droite et déplacement du panneau gauche dans cet onglet                   | Implémenté                         | 2026-11-20 — « approce 010 »                                    |
+| BKL-011 | Outils de patinoire et annuler/rétablir en barre verticale à gauche                        | Implémenté                         | 2026-11-20 — « I approve 11,12 and 13 »                         |
+| BKL-012 | Quatrième onglet Patinoire pour Rôles, Trajectoires et Grille                              | Implémenté                         | 2026-11-20 — « I approve 11,12 and 13 »                         |
+| BKL-013 | Après création d’une séquence, amener le titre Montage en haut du viewport                 | Implémenté                         | 2026-11-20 — « I approve 11,12 and 13 »                         |
+| BKL-014 | Supprimer la bande d’information au-dessus de la glace et agrandir le viewport             | Implémenté                         | 2026-11-20 — « approve 014, 015, 016 »                          |
+| BKL-015 | Légende et contrôles de vue en bas du panneau, à la place de la consigne                   | Implémenté                         | 2026-11-20 — « approve 014, 015, 016 »                          |
+| BKL-016 | Cadrer l’en-tête Montage complet après création, avec une petite marge supérieure          | Implémenté                         | 2026-11-20 — « approve 014, 015, 016 »                          |
+| BKL-017 | Préserver le zoom et le pan pendant les mises à jour de lecture                            | Implémenté                         | 2026-11-20 — « approve 017 to 022 »                             |
+| BKL-018 | Menu Insérer une étape avec option Ajouter une étape après la sélection                    | Implémenté                         | 2026-11-20 — « approve 017 to 022 »                             |
+| BKL-019 | Commandes de zoom, cadrage et inversion dans la barre verticale à gauche                   | Implémenté                         | 2026-11-20 — « approve 017 to 022 »                             |
+| BKL-020 | Identité visuelle HockeyDoo et intégration du logo fourni                                  | Implémenté                         | 2026-11-20 — « approve 017 to 022 »                             |
+| BKL-021 | Panneau droit élargi de 15 %, de 320 à 368 px sur desktop                                  | Implémenté                         | 2026-11-20 — « approve 017 to 022 »                             |
+| BKL-022 | Réinitialiser en première position en haut de la barre verticale                           | Implémenté                         | 2026-11-20 — « approve 017 to 022 »                             |
+| BKL-023 | Libellés accessibles et aides textuelles pour toutes les commandes à icônes                | Implémenté                         | 2026-11-20 — « approve 006, 023 and 024 »                       |
+| BKL-024 | Zoom de patinoire compact avec panneau horizontal dépliant vers la droite                  | Implémenté                         | 2026-11-20 — « approve 006, 023 and 024 »                       |
+| BKL-025 | Réduire l’espacement vertical des icônes de la barre gauche                                | Implémenté                         | 2026-11-20 — « approve 025 »                                    |
+| BKL-026 | Bouton de remise à 100 % dans le panneau de zoom de la patinoire                           | Implémenté                         | 2026-11-20 — « approve 025 and 206 » (026)                      |
+| BKL-027 | M0 v1.2 — contrats, stockage PostgreSQL, migrations/seeds et architecture                  | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-028 | M1 v1.2 — projets et éditeur de scénarios intégrés                                         | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-029 | M2 v1.2 — exécution déterministe et enregistrement des interventions                       | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-030 | M3 v1.2 — 2-1-2 et quatre sorties de zone contextuelles                                    | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-031 | M3.5 v1.2 — systèmes, règles typées, validation et versions                                | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-032 | M4 v1.2 — replays figés, annotations et publication de leçons                              | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-033 | M5 v1.2 — organisations, équipes, membres, sessions et invitations                         | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-034 | M5.5 v1.2 — plans FREE/TEAM_PRO et quotas atomiques                                        | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-035 | M6 v1.2 — catalogue, affectations et portail joueur mobile                                 | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-036 | M7 v1.2 — E2E, sécurité, observabilité, performance et guides                              | Implémenté                         | 2026-11-20 — autorisation globale v1.2                          |
+| BKL-037 | Démonstrations : timeline des étapes, lecture animée pas à pas et bulle descriptive        | Implémenté                         | 2026-11-21 — « implement 037 »                                  |
+| BKL-039 | Menu d'accueil Atelier : créer, charger une séquence et charger une tactique               | En cours                           | 2026-11-21 — « I approve 039 »                                  |
+| BKL-038 | Afficher le nom anglais d’origine de chaque démonstration                                  | Implémenté                         | 2026-11-21 — « I approve 038 »                                  |
+| BKL-040 | Réserver l'éditeur local à la création et à l'édition de séquences                         | Proposé — en attente d’approbation | —                                                               |
+| BKL-041 | Corriger les échecs CI de validation                                                       | Implémenté                         | 2026-11-23 — demande explicite de corriger les vérifications CI |
 
 ## BKL-001 — Timeline sous le viewport de la patinoire
 
@@ -1135,11 +1136,13 @@ Le menu reste accessible via un bouton Retour/Accueil une fois une séquence cha
 **Implémentation partielle :** 2026-11-21 ; les chargements restent à faire.
 
 **Fichiers créés :**
+
 - `/apps/web/src/atelier/store.ts` — Pinia store pour la gestion d'état de navigation
 - `/apps/web/src/atelier/AtelierHome.vue` — Composant écran d'accueil avec trois boutons d'action
 - `/e2e/atelier-home.spec.ts` — Suite de tests E2E (12 tests, tous passants)
 
 **Fichiers modifiés :**
+
 - `/apps/web/src/main.ts` — Route racine modifiée pour AtelierHome, éditeur déplacé à `/editor-local`
 - `/apps/web/src/messages.ts` — Ajout des clés i18n `atelier.*` (10 clés)
 - `/apps/web/src/editor/EditorView.vue` — Ajout du bouton Accueil/Retour avec gestion des modifications non enregistrées
@@ -1188,3 +1191,19 @@ Le menu reste accessible via un bouton Retour/Accueil une fois une séquence cha
 **Validation prévue :** tests unitaires de l'initialisation et de la protection des brouillons; tests navigateur Chromium desktop/mobile et WebKit mobile pour création, édition, accès direct et retour; non-régression des séquences, des tactiques et de la simulation; lint, typage et build.
 
 **Décision utilisateur :** en attente.
+
+## BKL-041 — Corriger les échecs CI de validation
+
+**Date :** 2026-11-23. **Statut :** Implémenté.
+
+**Demande et approbation explicite :** « Please fix the failed CI checks for this session immediately. » Corriger uniquement les causes des échecs CI et les changements nécessaires pour rétablir les vérifications.
+
+**Constat et comportement proposé :** la vérification de formatage échoue sur des fichiers suivis ; les tests navigateur supposent encore que l'éditeur est à la racine alors que l'accueil Atelier y a été installé. Rétablir le format requis et adapter les tests concernés aux routes actuelles sans changer le comportement produit.
+
+**Périmètre :** formatage des fichiers en échec, corrections des tests et configuration CI si nécessaire pour les échecs constatés, sans extensions fonctionnelles.
+
+**Critères d'acceptation :** les commandes de validation CI et les tests navigateur concernés réussissent sans masquer les échecs et sans régression de navigation.
+
+**Validation prévue :** `pnpm check`, `pnpm test:e2e` et vérification des différences ; signaler toute dépendance CI externe indisponible.
+
+**Validation réalisée :** `pnpm check` réussi (197 tests unitaires/API), `CI=true pnpm test:e2e` réussi (210 tests, 3 ignorés préexistants). Les journaux détaillés des jobs GitHub n'étaient pas accessibles (HTTP 403) ; les étapes CI dépendant de Docker et le nouveau résultat GitHub Actions n'ont pas été vérifiés ici.

@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { CoachingSequenceSchema } from '@hockey-iq/contracts';
 async function openSequence(page: Page) {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',
@@ -165,7 +165,7 @@ test('BKL-001 keeps the timeline directly under the viewport at the same width a
   page,
   isMobile,
 }, info) => {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',
@@ -361,7 +361,7 @@ test('BKL-002 preserves unrecorded positions until they are recorded or restored
 test('BKL-002 handles a sequence with only its initial pose and supports Enter activation', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',
@@ -388,7 +388,7 @@ test('BKL-004 places a single full-width header above the workspace and keeps ac
   page,
   isMobile,
 }, info) => {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',
@@ -511,7 +511,7 @@ test('BKL-004 places a single full-width header above the workspace and keeps ac
 test('BKL-004 keeps the moved actions reachable by keyboard and preserves capture, navigation, and reload', async ({
   page,
 }, info) => {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',
@@ -611,7 +611,7 @@ test('BKL-005 shows a compact left-aligned create action and replaces it with Mo
   page,
   isMobile,
 }, info) => {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',
@@ -719,7 +719,7 @@ test('BKL-005 shows a compact left-aligned create action and replaces it with Mo
 test('BKL-005 restores the right header state across simulation, keyboard creation, reload, import and undo', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',

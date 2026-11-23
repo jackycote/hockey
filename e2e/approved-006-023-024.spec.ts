@@ -5,7 +5,7 @@ const button = (page: Page, name: string) =>
   page.getByRole('button', { name, exact: true });
 const board = (page: Page) => page.locator('.rink-board');
 async function open(page: Page) {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(board(page)).toHaveAttribute('data-ready', 'true');
 }
 async function documentValue(page: Page) {

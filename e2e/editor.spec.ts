@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { ScenarioSchema } from '@hockey-iq/contracts';
 async function open(page: Page) {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',

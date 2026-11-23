@@ -12,7 +12,7 @@ const xField = (page: Page) =>
 const toolbar = (page: Page) =>
   page.getByRole('toolbar', { name: 'Atelier', exact: true });
 async function open(page: Page) {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',

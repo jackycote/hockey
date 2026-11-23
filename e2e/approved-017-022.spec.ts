@@ -7,7 +7,7 @@ const button = (page: Page, name: string) =>
 const item = (page: Page, name: string) =>
   page.getByRole('menuitem', { name, exact: true });
 async function open(page: Page) {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',

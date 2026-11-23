@@ -8,7 +8,7 @@ const tab = (page: Page, name: 'Équipes' | 'Joueur' | 'Étape' | 'Patinoire') =
 const xField = (page: Page) =>
   page.getByRole('spinbutton', { name: 'X (m)', exact: true });
 async function open(page: Page) {
-  await page.goto('/');
+  await page.goto('/editor-local');
   await expect(page.locator('.rink-board')).toHaveAttribute(
     'data-ready',
     'true',
